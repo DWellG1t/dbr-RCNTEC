@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'ref/css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-color: rgb(59, 72, 84);
+        }
+
+        .card {
+            transition-duration: 0.5s;
+        }
+        .card:hover {
+            background-color: rgb(255, 17, 104);
+            box-shadow: 10px 5px 10px black;
+        }
+        .cls {
+
+        }
+    </style>
+</head>
+<body>
+    
+    
+
+    <div class="container">
+
+
+
+        <div class="row">
+            <nav class="navbar navbar-light bg-light">
+                <a class="navbar-brand" href="{% url 'main' %}">DBR</a>
+                <a class="navbar-brand" href="#">HR</a>
+                <a class="navbar-brand" href="#">TEST</a>
+                <a class="navbar-brand" href="#">TEST</a>
+                <a class="navbar-brand" href="#">TEST</a>
+                <a class="navbar-brand" href="#">TEST</a>
+              </nav>
+        </div>
+
+        <div class="row">
+            {% for obj in tips %}
+            <div class="col-3" >
+
+                <div class="card" style="width: 18rem; margin-top: 20px;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ obj.title }}</h5>
+                      <hr> 
+                      <p class="card-text">{{ obj.tip }}</p>
+                   
+                    </div>
+                  </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+<script src="{% static 'ref/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'ref/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
+
+
+

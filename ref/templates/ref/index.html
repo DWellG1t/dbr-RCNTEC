@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'ref/css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background: url("https://html5book.ru/wp-content/uploads/2015/06/background28.jpg") repeat;
+        }
+
+        .card {
+            transition-duration: 0.5s;
+        }
+        .card:hover {
+            /* background-color: rgb(178, 255, 229); */
+            box-shadow: 5px 5px 20px rgba(71, 71, 71, 0.4);
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/b586c3bf0f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">RCNTEC</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">DBR</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'hr' %}">HR</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Категория
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <i style="margin-top: 10px; margin-left: 5px;" class="fas fa-search"></i>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+
+        <div class="row">
+            {% for obj in case %}
+            <div class="col-12 col-md-6 col-lg-3" >
+
+                <div class="card" style="width: 18rem; margin-top: 20px;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ obj.title }}</h5>
+                      <hr> 
+                      <p class="card-text">{{ obj.solution }}...</p>
+                      
+                      <!-- Modal activate -->
+                      <nobr><button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#d{{ obj.id }}">развернуть</button><span style="margin-left: 10%">{{ obj.date }}</span></nobr> <!-- popup -->
+                    </div>
+                  </div>
+
+            </div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="d{{ obj.id }}" tabindex="-1" aria-bs-labelledby="d{{ obj.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            {{ obj.full }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+            <!-- redirect -->
+            <div style="margin-top: 50%">
+
+                <div class="card" style="width: 18rem; margin-top: 20px; margin-left: 100px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Маленький принц</h5>
+                      <hr> 
+                      <p class="card-text">        - Да, конечно, - сказал Лис.
+                        - Но ты будешь плакать!
+                        - Да, конечно.
+                        - Значит, тебе от этого плохо.</p>
+                      <hr>
+                      <nobr><a class="btn btn-success" href="{% url 'prince' %}">подробнее</a><span style="margin-left: 10%">19.11.2001</span></nobr> <!-- popup -->
+                    </div>
+                  </div>
+
+            </div>
+
+        </div>
+    </div>
+
+<script src="{% static 'ref/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'ref/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>
+
+
+
